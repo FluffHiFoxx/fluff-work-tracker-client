@@ -1,34 +1,79 @@
-# temp
+# Fluff Work Tracker
 
-An Electron application with React and TypeScript
+A standalone application for work progress tracking, for work that needs to be documented and later reviewed either by yourself or others.
 
-## Recommended IDE Setup
+**Features:**
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+-   [x] Launchable application
+-   [ ] From for work progress
+-   [ ] Progress export to `.csv`
+-   [ ] Timed alerts
+-   [ ] Minimalizable to system tray
+-   [ ] Multiple "_work places_"
+-   [ ] Changeable alert timer
+-   [ ] Connect and save to [server client]()
+    -   [ ] Server based login requirement
+-   [ ] Direct local data transfer to [mobile client]()
+-   [ ] Different design styles
+    -   [ ] Light
+    -   [ ] Dark
+    -   [ ] Minimal Light
+    -   [ ] Minimal Dark
+-   [ ] Different OS compatibility
+    -   [x] Linux
+    -   [ ] Windows
+    -   [ ] MacOS
+
+**Used Stacks:**
+
+-   Typescript
+-   React
+-   Electron
+-   Tailwind
 
 ## Project Setup
 
 ### Install
 
 ```bash
-$ npm install
+npm install
 ```
 
 ### Development
 
 ```bash
-$ npm run dev
+npm run dev
 ```
+
+#### Recomended IDE Setup
+
+-   [VSCode](https://code.visualstudio.com/)
+    -   [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+    -   [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+    -   [PostCSS](https://marketplace.visualstudio.com/items?itemName=csstools.postcss)
 
 ### Build
 
+Linux
+
 ```bash
-# For windows
-$ npm run build:win
+npm run build:linux
+```
 
-# For macOS
-$ npm run build:mac
+Windows
 
-# For Linux
-$ npm run build:linux
+```bash
+npm run build:win
+```
+
+MacOS
+
+```bash
+npm run build:mac
+```
+
+**Start the application using**
+
+```bash
+npm start
 ```
