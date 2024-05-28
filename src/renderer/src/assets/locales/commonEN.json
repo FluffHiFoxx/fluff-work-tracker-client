@@ -1,0 +1,12 @@
+{
+	"button": {
+		"save": "Save"
+	},
+	"form": {
+		"label": {
+			"project": "Project",
+			"task": "Task",
+			"progress": "Progress Details"
+		}
+	}
+}

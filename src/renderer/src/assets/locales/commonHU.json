@@ -1,0 +1,12 @@
+{
+	"button": {
+		"save": "Mentés"
+	},
+	"form": {
+		"label": {
+			"project": "Projekt",
+			"task": "Feladat",
+			"progress": "Progress details"
+		}
+	}
+}

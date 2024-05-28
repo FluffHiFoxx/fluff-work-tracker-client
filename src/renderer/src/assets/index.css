@@ -1,39 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+#root {
+	height: 100%;
+}
 
-@layer base {
-	#root {
-		@apply h-full;
-	}
-
-	html,
-	body {
-		@apply h-full;
-		@apply select-none;
-		@apply font-sans antialiased;
-		@apply overflow-hidden;
-	}
-
-	input {
-		border: none;
-		box-shadow: none;
-		outline: none;
-		flex-grow: 1;
-		padding: 0.25em;
-	}
-
-	.inputWrapper {
-		display: flex;
-		align-items: center;
-		border: 0.4em double #42425c;
-		border-radius: 0.5em;
-		width: 100%;
-		padding: 0.25em 0.5em;
-	}
-
-	.inputWrapper .inputIcon {
-		height: 1em;
-		font-size: large;
-	}
+html,
+body {
+	height: 100%;
+	user-select: none;
+	overflow: hidden;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
