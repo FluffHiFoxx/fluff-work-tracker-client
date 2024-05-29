@@ -1,4 +1,7 @@
 {
+	"common": {
+		"noData": "No data"
+	},
 	"button": {
 		"save": "Save"
 	},
@@ -6,7 +9,8 @@
 		"label": {
 			"project": "Project",
 			"task": "Task",
-			"progress": "Progress Details"
+			"taskProgressPrecentage": "Task progress",
+			"progress": "Progress details"
 		}
 	}
 }

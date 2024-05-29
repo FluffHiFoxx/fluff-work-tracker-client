@@ -1,4 +1,7 @@
 {
+	"common": {
+		"noData": "Nincs adat"
+	},
 	"button": {
 		"save": "Mentés"
 	},
@@ -6,7 +9,8 @@
 		"label": {
 			"project": "Projekt",
 			"task": "Feladat",
-			"progress": "Progress details"
+			"taskProgressPrecentage": "Feladat teljesítettsége",
+			"progress": "Előrehaladás"
 		}
 	}
 }
