@@ -12,7 +12,7 @@ export type Task = {
 	precentageDone: number;
 };
 
-export type FormValues = {
+export type WorkProgressValues = {
 	project: string | null;
 	task: string | null;
 	taskPrecentage: number;

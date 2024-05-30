@@ -5,42 +5,52 @@ import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { FormValues } from "@shared/models";
+import { Form } from "@renderer/components";
 import { isEmpty, isNil, trim } from "lodash";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useImmer } from "use-immer";
+import { WorkFormValues, validator } from "./form-model";
 
-const DEFAULT_FORM_VALUES: FormValues = {
+const DEFAULT_FORM_VALUES: WorkFormValues = {
 	project: null,
 	task: null,
 	taskPrecentage: 0,
 	progress: null
 };
 
-export const Form: React.FC = () => {
+export const WorkForm: React.FC = () => {
 	const { t } = useTranslation();
-	const [values, updateValues] = useImmer<FormValues>(DEFAULT_FORM_VALUES);
+	const [values, updateValues] = useImmer<WorkFormValues>(DEFAULT_FORM_VALUES);
+	const [projectInput, setProjectInput] = useState<string>("");
+	const [taskInput, setTaskInput] = useState<string>("");
 
 	const handleProjectChange = (newValue: string | null) => {
+		console.log("Project change", newValue, ", Task values:", values.task);
+
 		if (isNil(newValue)) {
 			updateValues((values) => {
 				values.project = null;
 				values.task = null;
 			});
+			setTaskInput("");
 			return;
 		}
 
 		const cleanValue = trim(newValue);
 
-		if (isEmpty(cleanValue)) {
+		if (!isEmpty(cleanValue)) {
 			updateValues((values) => {
 				values.project = cleanValue;
 				values.task = null;
 			});
+			setTaskInput("");
 		}
 	};
 
 	const handleTaskChange = (newValue: string | null) => {
+		console.log("Task change", newValue);
+
 		if (isNil(newValue)) {
 			updateValues((values) => {
 				values.task = null;
@@ -50,7 +60,7 @@ export const Form: React.FC = () => {
 
 		const cleanValue = trim(newValue);
 
-		if (isEmpty(cleanValue)) {
+		if (!isEmpty(cleanValue)) {
 			updateValues((values) => {
 				values.task = cleanValue;
 			});
@@ -72,39 +82,45 @@ export const Form: React.FC = () => {
 	};
 
 	return (
-		<>
-			<Box
-				component="form"
-				display="flex"
-				flexDirection="column"
-				alignItems="center"
-				gap={1}
-				paddingY={2}
-			>
+		// TODO: Switch empty function to saving function
+		<Form
+			values={values}
+			validator={validator}
+			onSubmit={function (values: WorkFormValues): {} {
+				throw new Error("Function not implemented.");
+			}}
+		>
+			<Box display="flex" flexDirection="column" alignItems="center" gap={1} paddingY={2}>
 				<Box display="flex" gap={2} width="100%">
 					<Autocomplete
 						id="project"
 						value={values.project}
+						inputValue={projectInput}
 						sx={{ flexGrow: 2 }}
-						freeSolo
 						fullWidth
+						freeSolo
+						autoSelect
 						options={[]}
 						renderInput={(params) => (
 							<TextField {...params} label={t("form.label.project")} />
 						)}
 						onChange={(_event, value) => handleProjectChange(value)}
+						onInputChange={(_event, value) => setProjectInput(value)}
 					/>
 					<Autocomplete
 						id="task"
 						value={values.task}
+						inputValue={taskInput}
 						sx={{ flexGrow: 1 }}
-						freeSolo
 						fullWidth
+						freeSolo
+						autoSelect
 						options={[]}
 						renderInput={(params) => (
 							<TextField {...params} label={t("form.label.task")} />
 						)}
 						onChange={(_event, value) => handleTaskChange(value)}
+						onInputChange={(_event, value) => setTaskInput(value)}
 					/>
 				</Box>
 
@@ -133,8 +149,8 @@ export const Form: React.FC = () => {
 					sx={{ width: 600 }}
 					label={t("form.label.progress")}
 					multiline
-					maxRows={8}
-					minRows={4}
+					maxRows={12}
+					minRows={8}
 					spellCheck={false}
 					onChange={(event) => handleProgressChange(event.target.value)}
 				/>
@@ -142,6 +158,6 @@ export const Form: React.FC = () => {
 					{t("button.save")}
 				</Button>
 			</Box>
-		</>
+		</Form>
 	);
 };

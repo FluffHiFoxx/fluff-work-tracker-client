@@ -17,6 +17,14 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
 		<LanguageProvider>
 			<ThemeProvider theme={theme}>
+				{/* Start: animated background */}
+				<div>
+					<div className="wave"></div>
+					<div className="wave"></div>
+					<div className="wave"></div>
+				</div>
+				{/* End: animated background */}
+
 				<App />
 			</ThemeProvider>
 		</LanguageProvider>

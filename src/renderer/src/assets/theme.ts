@@ -39,11 +39,8 @@ const fluffTheme = createTheme({
 					"& .MuiSlider-thumb": {
 						height: 18,
 						width: 18,
+						borderRadius: 6,
 						backgroundColor: grey[50],
-						borderBottomLeftRadius: 6,
-						borderTopLeftRadius: 6,
-						borderBottomRightRadius: "100%",
-						borderTopRightRadius: "100%",
 						border: "4px solid currentColor",
 						"&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
 							boxShadow: "inherit"
