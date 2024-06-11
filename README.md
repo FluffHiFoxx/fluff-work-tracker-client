@@ -5,12 +5,13 @@ A standalone application for work progress tracking, for work that needs to be d
 **Features:**
 
 -   [x] Launchable application
--   [ ] From for work progress
+-   [x] From for work progress
 -   [ ] Progress export to `.csv`
 -   [ ] Timed alerts
 -   [ ] Multiple languages
     -   [x] English
-    -   [ ] Hungarian
+    -   [x] Hungarian
+    -   [ ] Language switcher
 -   [ ] Minimalizable to system tray
 -   [ ] Multiple "_work places_"
 -   [ ] Changeable alert timer

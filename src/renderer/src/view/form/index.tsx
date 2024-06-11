@@ -9,7 +9,6 @@ import { useForm } from "@shared/useForm";
 import { isEmpty, isNil, trim } from "lodash";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useImmer } from "use-immer";
 import { WorkFormValues, validator } from "./form-model";
 
 const DEFAULT_FORM_VALUES: WorkFormValues = {
@@ -21,16 +20,19 @@ const DEFAULT_FORM_VALUES: WorkFormValues = {
 
 export const WorkForm: React.FC = () => {
 	const { t } = useTranslation();
-	const [values, updateValues] = useImmer<WorkFormValues>(DEFAULT_FORM_VALUES);
 	const [projectInput, setProjectInput] = useState<string>("");
 	const [taskInput, setTaskInput] = useState<string>("");
-	const { errors, submit } = useForm<WorkFormValues>(t, values, validator, () => {});
+	const { formValues, submit, updateFormValues } = useForm<WorkFormValues>(
+		t,
+		DEFAULT_FORM_VALUES,
+		validator,
+		// TODO: Switch empty function to saving function
+		() => {}
+	);
 
 	const handleProjectChange = (newValue: string | null) => {
-		console.log("Project change", newValue, ", Task values:", values.task);
-
 		if (isNil(newValue)) {
-			updateValues((values) => {
+			updateFormValues((values) => {
 				values.project = null;
 				values.task = null;
 			});
@@ -41,7 +43,7 @@ export const WorkForm: React.FC = () => {
 		const cleanValue = trim(newValue);
 
 		if (!isEmpty(cleanValue)) {
-			updateValues((values) => {
+			updateFormValues((values) => {
 				values.project = cleanValue;
 				values.task = null;
 			});
@@ -50,10 +52,8 @@ export const WorkForm: React.FC = () => {
 	};
 
 	const handleTaskChange = (newValue: string | null) => {
-		console.log("Task change", newValue);
-
 		if (isNil(newValue)) {
-			updateValues((values) => {
+			updateFormValues((values) => {
 				values.task = null;
 			});
 			return;
@@ -62,7 +62,7 @@ export const WorkForm: React.FC = () => {
 		const cleanValue = trim(newValue);
 
 		if (!isEmpty(cleanValue)) {
-			updateValues((values) => {
+			updateFormValues((values) => {
 				values.task = cleanValue;
 			});
 		}
@@ -70,26 +70,25 @@ export const WorkForm: React.FC = () => {
 
 	const handlePercentageChange = (newValue: number | number[]) => {
 		if (typeof newValue == "number") {
-			updateValues((values) => {
+			updateFormValues((values) => {
 				values.taskPrecentage = newValue;
 			});
 		}
 	};
 
 	const handleProgressChange = (newValue: string) => {
-		updateValues((values) => {
+		updateFormValues((values) => {
 			values.progress = newValue;
 		});
 	};
 
 	return (
-		// TODO: Switch empty function to saving function
-		<form onSubmit={submit}>
+		<>
 			<Box display="flex" flexDirection="column" alignItems="center" gap={1} paddingY={2}>
 				<Box display="flex" gap={2} width="100%">
 					<Autocomplete
 						id="project"
-						value={values.project}
+						value={formValues.project}
 						inputValue={projectInput}
 						sx={{ flexGrow: 2 }}
 						fullWidth
@@ -100,7 +99,8 @@ export const WorkForm: React.FC = () => {
 							<TextField
 								{...params}
 								label={t("form.label.project")}
-								helperText={errors.project}
+								error={!isEmpty(formValues.errors?.project)}
+								helperText={formValues.errors?.project}
 							/>
 						)}
 						onChange={(_event, value) => handleProjectChange(value)}
@@ -108,7 +108,7 @@ export const WorkForm: React.FC = () => {
 					/>
 					<Autocomplete
 						id="task"
-						value={values.task}
+						value={formValues.task}
 						inputValue={taskInput}
 						sx={{ flexGrow: 1 }}
 						fullWidth
@@ -119,7 +119,8 @@ export const WorkForm: React.FC = () => {
 							<TextField
 								{...params}
 								label={t("form.label.task")}
-								helperText={errors.task}
+								error={!isEmpty(formValues.errors?.task)}
+								helperText={formValues.errors?.task}
 							/>
 						)}
 						onChange={(_event, value) => handleTaskChange(value)}
@@ -133,12 +134,12 @@ export const WorkForm: React.FC = () => {
 							{t("form.label.taskProgressPrecentage")}:
 						</Typography>
 						<Typography variant="body1" id="task.precentageDone" color="primary">
-							{values.taskPrecentage ?? t("common.noData")}%
+							{formValues.taskPrecentage ?? t("common.noData")}%
 						</Typography>
 					</Box>
 					<Slider
 						aria-label="task.precentageDone"
-						value={values.taskPrecentage ?? 0}
+						value={formValues.taskPrecentage ?? 0}
 						marks
 						min={0}
 						max={100}
@@ -146,7 +147,7 @@ export const WorkForm: React.FC = () => {
 						onChange={(_event, value) => handlePercentageChange(value)}
 					/>
 					<Typography variant="caption" color="error">
-						{errors.taskPrecentage}
+						{formValues.errors?.taskPrecentage}
 					</Typography>
 				</Box>
 
@@ -159,12 +160,13 @@ export const WorkForm: React.FC = () => {
 					minRows={8}
 					spellCheck={false}
 					onChange={(event) => handleProgressChange(event.target.value)}
-					helperText={errors.progress}
+					error={!isEmpty(formValues.errors?.progress)}
+					helperText={formValues.errors?.progress}
 				/>
-				<Button endIcon={<SaveIcon />} sx={{ width: 120 }} type="submit">
+				<Button onClick={submit} endIcon={<SaveIcon />} sx={{ width: 120 }} type="submit">
 					{t("button.save")}
 				</Button>
 			</Box>
-		</form>
+		</>
 	);
 };

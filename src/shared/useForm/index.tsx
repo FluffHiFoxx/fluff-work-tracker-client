@@ -1,22 +1,25 @@
 import { TFunction } from "i18next";
 import { isEmpty } from "lodash";
 import { useImmer } from "use-immer";
-import { FormErrors, FormValidator, FormValues } from "./form-types";
+import { FormValidator, FormValues } from "./form-types";
 
 export const useForm = <TFormValues extends FormValues>(
 	t: TFunction,
-	values: TFormValues,
+	innitialValues: TFormValues,
 	validator: FormValidator<TFormValues>,
 	onSubmit: (values: TFormValues) => void
 ) => {
-	const [errors, updateErrors] = useImmer<FormErrors>({});
-	const submit = () => {
-		updateErrors(() => validator(values, t));
+	const [formValues, updateFormValues] = useImmer<TFormValues>(innitialValues);
 
-		if (isEmpty(errors)) {
+	const submit = () => {
+		updateFormValues((values) => {
+			values.errors = validator(formValues, t);
+		});
+
+		if (isEmpty(formValues.errors)) {
 			onSubmit;
 		}
 	};
 
-	return { errors, submit };
+	return { formValues, submit, updateFormValues };
 };

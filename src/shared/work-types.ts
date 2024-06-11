@@ -13,8 +13,8 @@ export type Task = {
 };
 
 export type WorkProgressValues = {
-	project: string | null;
-	task: string | null;
+	project: string;
+	task: string;
 	taskPrecentage: number;
-	progress: string | null;
+	progress: string;
 };
