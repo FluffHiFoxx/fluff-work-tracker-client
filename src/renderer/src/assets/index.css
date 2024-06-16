@@ -1,17 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+#root {
+	height: 100%;
+}
 
-@layer base {
-	#root {
-		@apply h-full;
+html,
+body {
+	height: 100%;
+	user-select: none;
+	overflow: hidden;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	background-color: rgb(231, 231, 231);
+	background-size: 400% 400%;
+	background-attachment: fixed;
+}
+
+.wave {
+	background: rgba(126, 135, 255, 0.2);
+	border-radius: 1000% 1000% 0 0;
+	position: fixed;
+	width: 200%;
+	height: 12em;
+	animation: wave 10s -3s ease-in-out infinite;
+	transform: translate3d(0, 0, 0);
+	opacity: 0.8;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+	bottom: -1.25em;
+	animation: wave 18s ease-in-out reverse infinite;
+	opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+	bottom: -2.5em;
+	animation: wave 20s -1s reverse infinite;
+	opacity: 0.9;
+}
+
+@keyframes wave {
+	2% {
+		transform: translateX(1);
 	}
 
-	html,
-	body {
-		@apply h-full;
-		@apply select-none;
-		@apply font-sans antialiased;
-		@apply overflow-hidden;
+	25% {
+		transform: translateX(-25%);
+	}
+
+	50% {
+		transform: translateX(-50%);
+	}
+
+	75% {
+		transform: translateX(-25%);
+	}
+
+	100% {
+		transform: translateX(1);
 	}
 }

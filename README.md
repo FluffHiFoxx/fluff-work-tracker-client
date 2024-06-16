@@ -5,9 +5,13 @@ A standalone application for work progress tracking, for work that needs to be d
 **Features:**
 
 -   [x] Launchable application
--   [ ] From for work progress
+-   [x] From for work progress
 -   [ ] Progress export to `.csv`
 -   [ ] Timed alerts
+-   [ ] Multiple languages
+    -   [x] English
+    -   [x] Hungarian
+    -   [ ] Language switcher
 -   [ ] Minimalizable to system tray
 -   [ ] Multiple "_work places_"
 -   [ ] Changeable alert timer
@@ -15,7 +19,7 @@ A standalone application for work progress tracking, for work that needs to be d
     -   [ ] Server based login requirement
 -   [ ] Direct local data transfer to [mobile client]()
 -   [ ] Different design styles
-    -   [ ] Light
+    -   [x] Light
     -   [ ] Dark
     -   [ ] Minimal Light
     -   [ ] Minimal Dark
@@ -29,7 +33,7 @@ A standalone application for work progress tracking, for work that needs to be d
 -   Typescript
 -   React
 -   Electron
--   Tailwind
+-   Material UI
 
 ## Project Setup
 
@@ -49,8 +53,6 @@ npm run dev
 
 -   [VSCode](https://code.visualstudio.com/)
     -   [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-    -   [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-    -   [PostCSS](https://marketplace.visualstudio.com/items?itemName=csstools.postcss)
 
 ### Build
 

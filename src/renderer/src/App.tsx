@@ -1,9 +1,18 @@
-const App = (): JSX.Element => {
-	return (
-		<div className="flex h-full items-center justify-center">
-			<p className="text-4xl text-purple-700">Welcome to Fluff Work tracker</p>
-		</div>
-	);
-};
+import { Box } from "@mui/material";
+import { WorkForm } from "./view/form";
+
+const App = (): JSX.Element => (
+	<Box
+		display="flex"
+		flexDirection="column"
+		height="100%"
+		margin="auto"
+		alignItems="center"
+		justifyContent="center"
+		gap={2}
+	>
+		<WorkForm />
+	</Box>
+);
 
 export default App;

@@ -1,14 +1,12 @@
 {
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "always",
-		"source.organizeImports": "always"
+		"source.organizeImports": "always",
+		"source.formatDocument": "always",
+		"source.fixAll.eslint": "always"
 	},
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.wordWrap": "on",
-	"files.associations": {
-		"*.css": "tailwindcss"
-	},
 	"editor.quickSuggestions": {
 		"strings": "on"
 	}

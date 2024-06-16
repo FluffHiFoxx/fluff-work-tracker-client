@@ -1,0 +1,20 @@
+{
+	"common": {
+		"noData": "No data",
+		"error": {
+			"fieldEmpty": "Please fill out this field",
+			"fieldOutOfBounds": "Field value is out of bounds"
+		}
+	},
+	"button": {
+		"save": "Save"
+	},
+	"form": {
+		"label": {
+			"project": "Project",
+			"task": "Task",
+			"taskProgressPrecentage": "Task progress",
+			"progress": "Progress details"
+		}
+	}
+}

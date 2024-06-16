@@ -1,0 +1,20 @@
+{
+	"common": {
+		"noData": "Nincs adat",
+		"error": {
+			"fieldEmpty": "Kérem töltse ki a mezőt",
+			"fieldOutOfBounds": "A mező értéke a várt értékeken kívül esik"
+		}
+	},
+	"button": {
+		"save": "Mentés"
+	},
+	"form": {
+		"label": {
+			"project": "Projekt",
+			"task": "Feladat",
+			"taskProgressPrecentage": "Feladat teljesítettsége",
+			"progress": "Előrehaladás"
+		}
+	}
+}
