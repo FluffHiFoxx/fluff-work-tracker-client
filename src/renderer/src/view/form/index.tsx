@@ -2,9 +2,8 @@ import SaveIcon from "@mui/icons-material/SaveAlt";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Slider from "@mui/material/Slider";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
+import { SliderWithText } from "@renderer/components/SliderWithText";
 import { useForm } from "@shared/useForm";
 import { isEmpty, isNil, trim } from "lodash";
 import { useState } from "react";
@@ -128,28 +127,16 @@ export const WorkForm: React.FC = () => {
 					/>
 				</Box>
 
-				<Box width="100%">
-					<Box display="flex" gap={1} alignItems="center">
-						<Typography variant="body2">
-							{t("form.label.taskProgressPrecentage")}:
-						</Typography>
-						<Typography variant="body1" id="task.precentageDone" color="primary">
-							{formValues.taskPrecentage ?? t("common.noData")}%
-						</Typography>
-					</Box>
-					<Slider
-						aria-label="task.precentageDone"
-						value={formValues.taskPrecentage ?? 0}
-						marks
-						min={0}
-						max={100}
-						step={5}
-						onChange={(_event, value) => handlePercentageChange(value)}
-					/>
-					<Typography variant="caption" color="error">
-						{formValues.errors?.taskPrecentage}
-					</Typography>
-				</Box>
+				<SliderWithText
+					aria-label="task.precentageDone"
+					value={formValues.taskPrecentage ?? 0}
+					marks
+					min={0}
+					max={100}
+					step={5}
+					onChange={(_event, value) => handlePercentageChange(value)}
+					error={formValues.errors?.taskPrecentage}
+				/>
 
 				<TextField
 					id="progress"
