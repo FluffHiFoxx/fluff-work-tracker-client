@@ -1,6 +1,8 @@
 import { electronApp, is, optimizer } from "@electron-toolkit/utils";
+import { ReadCsv, WriteCsv } from "@shared/csv-handler-types";
 import { BrowserWindow, app, ipcMain, shell } from "electron";
 import { join } from "path";
+import { getCSVFileNames, writeCSV } from "./lib";
 
 function createWindow(): void {
 	// Create the browser window.
@@ -13,7 +15,8 @@ function createWindow(): void {
 		title: "Fluff Work Tracker",
 		webPreferences: {
 			preload: join(__dirname, "../preload/index.js"),
-			sandbox: false
+			sandbox: false,
+			contextIsolation: true
 		}
 	});
 
@@ -49,8 +52,11 @@ app.whenReady().then(() => {
 		optimizer.watchWindowShortcuts(window);
 	});
 
-	// IPC test
-	ipcMain.on("ping", () => console.log("pong"));
+	ipcMain.handle("getCSVFileNames", (_, ...args: Parameters<ReadCsv>) =>
+		getCSVFileNames(...args)
+	);
+
+	ipcMain.handle("getCSVFileNames", (_, ...args: Parameters<WriteCsv>) => writeCSV(...args));
 
 	createWindow();
 

@@ -1,6 +1,8 @@
+import { ReadCsv, WriteCsv } from "@shared/csv-handler-types";
+
 declare global {
 	interface Window {
-		// electron: ElectronAPI;
-		api: unknown; // TODO: change based on exposeInMainWorld
+		getCSVFileNames: ReadCsv;
+		writeCSV: WriteCsv;
 	}
 }

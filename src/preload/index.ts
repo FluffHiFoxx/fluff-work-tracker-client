@@ -1,4 +1,5 @@
-import { contextBridge } from "electron";
+import { ReadCsv, WriteCsv } from "@shared/csv-handler-types";
+import { contextBridge, ipcRenderer } from "electron";
 
 if (!process.contextIsolated) {
 	throw new Error("Context isolation must be enabled in BrowserWindow");
@@ -6,7 +7,9 @@ if (!process.contextIsolated) {
 
 try {
 	contextBridge.exposeInMainWorld("context", {
-		// TODO: implement
+		getCSVFileNames: (...args: Parameters<ReadCsv>) =>
+			ipcRenderer.invoke("getCSVFileNames", ...args),
+		writeCSV: (...args: Parameters<WriteCsv>) => ipcRenderer.invoke("getCSVFileNames", ...args)
 	});
 } catch (error) {
 	console.error(error);

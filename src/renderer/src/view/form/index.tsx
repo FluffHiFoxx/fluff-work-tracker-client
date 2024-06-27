@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { WorkFormValues, validator } from "./form-model";
 
 const DEFAULT_FORM_VALUES: WorkFormValues = {
+	saveTime: null,
 	project: null,
 	task: null,
 	taskPrecentage: 0,
@@ -28,6 +29,8 @@ export const WorkForm: React.FC = () => {
 		// TODO: Switch empty function to saving function
 		() => {}
 	);
+
+	// TODO: get csv files from storage
 
 	const handleProjectChange = (newValue: string | null) => {
 		if (isNil(newValue)) {
@@ -84,6 +87,8 @@ export const WorkForm: React.FC = () => {
 	return (
 		<>
 			<Box display="flex" flexDirection="column" alignItems="center" gap={1} paddingY={2}>
+				{/* // TODO: add csv file selector and creator (Autocomplete Element) */}
+				{/* // TODO: add datetime display and selector */}
 				<Box display="flex" gap={2} width="100%">
 					<Autocomplete
 						id="project"

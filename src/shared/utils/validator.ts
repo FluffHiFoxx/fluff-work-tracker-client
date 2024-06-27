@@ -9,3 +9,13 @@
 export const inRange = (value: number, min?: number, max?: number): boolean => {
 	return value >= (min ?? 0) || value <= (max ?? 100);
 };
+
+/**
+ * Checks if a `string` contains a value.
+ *
+ * @param value The value to check.
+ * @returns Returns true if the value contains only whitespaces or is falsy.
+ */
+export const isBlank = (value: string) => {
+	return !value || value.trim().length <= 0;
+};

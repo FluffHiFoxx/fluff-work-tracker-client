@@ -13,6 +13,7 @@ export type Task = {
 };
 
 export type WorkProgressValues = {
+	saveTime: string; // TODO: replace with proper date time type
 	project: string;
 	task: string;
 	taskPrecentage: number;
